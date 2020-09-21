@@ -1,0 +1,80 @@
+{% extends "core/base.html" %}
+{% block title %}Portada{% endblock %}
+
+<!--=====================================
+LOGO
+======================================-->
+
+{% block logo %}
+    {% load static %}
+    {% static 'core/vistas/img/plantilla/logo.png' %}
+{% endblock %}
+
+<!--=====================================
+SOCIAL
+======================================-->
+{% block facebook %}
+    facebookColor
+{% endblock %}
+
+{% block youtube %}
+    youtubeColor
+{% endblock %}
+
+{% block twitter %}
+    twitterColor
+{% endblock %}
+
+{% block google %}
+    googleColor
+{% endblock %}
+
+    
+<!--=====================================
+Banner
+======================================-->
+
+{% block imgbanner %}
+     {% load static %}
+      {% static 'core/vistas/img/banner/default.jpg' %}
+{% endblock %}
+
+{% block styleBanner %}
+    textoDer
+{% endblock %}
+
+{% block TituloBanner %}
+    TITULO DE PRUEBA
+{% endblock %}
+
+
+{% block OfertaBanner %}
+    50% DE DESCUENTO
+{% endblock %}
+
+{% block fechaBanner %}
+    Hasta el 31 de Agosto
+{% endblock %}
+
+{% block content %}
+
+	<div class="container-fluid well well-sm barraProductos">
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-12-xs text-center error404">                      
+
+
+					<h2>Gracias por contactarnos!!!</h2>
+
+				</div>
+
+
+		</div>
+
+
+	</div>
+
+
+{% endblock %}

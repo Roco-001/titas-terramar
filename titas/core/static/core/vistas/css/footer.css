@@ -1,0 +1,66 @@
+/*=============================================
+FOOTER
+=============================================*/
+
+footer{
+	margin-top:20px;
+	border-top:8px solid #999;
+	background: #222;
+	padding:20px 0;
+}
+
+.footerCategorias h4 a{
+	color:#666;
+}
+
+.footerCategorias li a{
+	color:#999;
+}
+
+.footerCategorias hr{
+	border:1px solid #333;
+}
+
+.infoContacto h5{
+	color:#999;
+}
+
+.formContacto h4 {
+	color:#666;
+}
+.formContacto p {
+	color:#999;
+}
+
+.formContacto table {
+	color:#999;
+}
+
+.final{
+	padding:20px 0;
+	background: black;
+}
+
+.final ul li{
+	display:inline;
+	line-height:30px;
+	margin:0px 5px;
+	color:white;
+}
+
+	
+
+.final a:visited, a:link, a:focus, a:hover, a:active{
+	list-style: none;	
+	text-decoration: none;
+	color: inherit;
+}
+
+.final  a:hover {
+	color:white;
+}
+
+.final .social ul li a i{
+	font-size:18px;
+	margin:0 1px;
+}

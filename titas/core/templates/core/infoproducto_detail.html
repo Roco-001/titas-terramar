@@ -1,0 +1,588 @@
+{% extends "core/base.html" %}
+{% block title %}Producto {{product.titulo}} {% endblock %}
+
+<!--=====================================
+BARRA SUPERIOR
+======================================-->
+
+{% block barrasuperior %}
+{% if product.banner.barrasuperior %}
+			{{product.banner.barrasuperior}}
+	{% else %}			
+			black
+	{% endif %}    
+{% endblock %}
+
+
+<!--=====================================
+LOGO
+======================================-->
+
+{% block logo %}
+
+	{% if product.banner.imagen_logo_banner %}
+			{{product.banner.imagen_logo_banner.url}}
+
+	{% else %}
+		{% load static %}
+		{% static 'core/vistas/img/plantilla/logo.png' %}
+
+	{% endif %}   
+{% endblock %}
+
+<!--=====================================
+			SOCIAL
+	======================================-->
+{% block facebook %}
+	{% if product.banner.style_facebook %}
+			{{product.banner.style_facebook}}
+		{% else %}			
+			facebookColor
+		{% endif %}    
+{% endblock %}
+
+{% block youtube %}
+		
+		{% if product.banner.style_youtube %}
+			{{product.banner.style_youtube}}
+		{% else %}			
+			 youtubeColor
+		{% endif %}    
+   
+{% endblock %}
+
+{% block twitter %}
+	{% if product.banner.style_twitter %}
+		{{product.banner.style_twitter}}
+	{% else %}			
+		twitterColor
+	{% endif %}      
+{% endblock %}
+
+{% block google %}
+
+	{% if product.banner.style_google %}
+		{{product.banner.style_google}}
+	{% else %}			
+		googleColor
+	{% endif %}  
+    
+{% endblock %}
+
+
+{% block instagram %}
+	{% if product.banner.style_instagram %}
+		{{product.banner.style_instagram}}
+	{% else %}			
+		instagramColor
+	{% endif %}
+
+{% endblock %}
+
+<!--=====================================
+Banner
+======================================-->
+
+
+	{% block imgbanner %}
+		{% if product.banner.imagen_banner %}
+			{{product.banner.imagen_banner.url}}
+
+		{% else %}
+
+			{% load static %}
+			{% static 'core/vistas/img/banner/default.jpg' %} 
+		{% endif %}
+
+	{% endblock %}
+
+
+{% block styleBanner %}
+	{% if product.banner.style_tex_banner %}
+			{{product.banner.style_tex_banner}}
+
+	{% else %}
+			textoDer
+	{% endif %}
+
+    
+{% endblock %}
+
+{% block TituloBanner %}
+	{% if product.banner.titulo1_banner %}
+		{{product.banner.titulo1_banner}}
+	{% else %}
+		 NO TE LO PUEDES PERDER !!!
+	{% endif %}
+
+{% endblock %}
+
+
+{% block OfertaBanner %}
+    {% if product.banner.titulo2_banner %}
+		{{product.banner.titulo2_banner}}
+	{% else %}
+		50% de Descuento
+	{% endif %}
+{% endblock %}
+
+{% block fechaBanner %}
+	{% if product.banner.titulo3_banner %}
+		{{product.banner.titulo3_banner}}
+	{% else %}
+		Hasta el 31 de Septiembre
+	{% endif %}
+
+    
+{% endblock %}
+
+{% block colorTituloBanner %}
+{% if product.banner.color_titulo1_banner %}
+		{{product.banner.color_titulo1_banner}}
+	{% else %}
+	black
+    {% endif %}
+    
+{% endblock %}
+
+{% block colorOfertaBanner %}
+	{% if product.banner.color_titulo2_banner %}
+		{{product.banner.color_titulo2_banner}}
+	{% else %}
+	black
+    {% endif %}
+    
+{% endblock %}
+
+{% block colorFechaBanner %}
+	{% if product.banner.color_titulo3_banner %}
+		{{product.banner.color_titulo3_banner}}
+	{% else %}
+	black
+    {% endif %}
+    
+{% endblock %}
+
+
+
+{% block content %}
+
+
+	
+				
+			  <div class="container">
+	
+                    <div class="row">
+                        
+                        <div class="col-12-xs text-left error404">                      
+                                               
+					
+					
+							<h2>{{product.subcategory.name}}</h2>
+
+						</div>
+					</div>
+			</div>
+
+<!--=====================================
+INFOPRODUCTOS
+======================================-->
+<div class="container-fluid infoproducto">
+	
+	<div class="container">
+		
+		<div class="row">			
+			
+				<!--=====================================
+				VISOR DETALLADA DE LOS  PRODUCTOS
+				======================================-->
+					{% if product.fisico %}
+					<div class="col-md-5 col-sm-6 col-xs-12 visorImg">
+
+						{% if product.visor %}
+							
+
+							<figure class="visor">							
+									
+							{% if product.visor.imagen1 %}      <img id ="lupa1" class="img-thumbnail" src="{{product.visor.imagen1.url}}" alt = "{{product.titulo}}"> {%endif %}
+							{% if product.visor.imagen2 %}		<img id ="lupa2" class="img-thumbnail" src="{{product.visor.imagen2.url}}" alt = "{{product.titulo}}">  {%endif %}
+							{% if product.visor.imagen3 %}		<img id ="lupa3" class="img-thumbnail" src="{{product.visor.imagen3.url}}" alt = "{{product.titulo}}"> {%endif %}
+							{% if product.visor.imagen4 %}		<img id ="lupa4" class="img-thumbnail" src="{{product.visor.imagen4.url}}" alt = "{{product.titulo}}">	 {%endif %}
+							{% if product.visor.imagen5 %}		<img id ="lupa5" class="img-thumbnail" src="{{product.visor.imagen5.url}}" alt = "{{product.titulo}}"> {%endif %}
+							{% if product.visor.imagen6 %}		<img id ="lupa6" class="img-thumbnail" src="{{product.visor.imagen6.url}}" alt = "{{product.titulo}}"> {%endif %}
+										
+
+							</figure>
+
+							<div class="flexslider">
+								  
+								  <ul class="slides">							
+									{% if product.visor.imagen1 %} 
+									<li>
+								     	<img value = "1" class="img-thumbnail" src="{{product.visor.imagen1.url}}" alt = "{{product.titulo}}">
+								    </li>
+									{%endif %}
+									{% if product.visor.imagen2 %} 
+									<li>
+								     	<img value = "2" class="img-thumbnail" src="{{product.visor.imagen2.url}}" alt = "{{product.titulo}}">
+								    </li>
+									{%endif %}
+									{% if product.visor.imagen3 %} 
+									<li>
+								     	<img value = "3" class="img-thumbnail" src="{{product.visor.imagen3.url}}" alt = "{{product.titulo}}">
+								    </li>
+									{%endif %}
+									{% if product.visor.imagen4 %} 
+									<li>
+								     	<img value = "4" class="img-thumbnail" src="{{product.visor.imagen4.url}}" alt = "{{product.titulo}}">
+								    </li>
+									{%endif %}
+									{% if product.visor.imagen5 %} 
+									<li>
+								     	<img value = "5" class="img-thumbnail" src="{{product.visor.imagen5.url}}" alt = "{{product.titulo}}">
+								    </li>
+									{%endif %}
+									{% if product.visor.imagen6 %} 
+
+									<li>
+								     	<img value = "6" class="img-thumbnail" src="{{product.visor.imagen6.url}}" alt = "{{product.titulo}}">
+								    </li>
+									{%endif %}
+
+									</ul>
+										
+							</div>
+					</div>
+						{% else  %}
+							<figure class="visor">
+								<img id ="lupa1" class="img-thumbnail" src="{{product.portada.url}}" alt = "{{product.titulo}}">
+							</figure>
+
+							</div>
+						{% endif  %}
+
+				{% else  %}
+				
+				<!--=====================================
+				VISOR DETALLADA DE LOS  PRODUCTOS
+				======================================-->
+
+					<div class="col-sm-6 col-xs-12">
+					<iframe class="videoPresentacion" width="100%"  src="{{product.url_media}}" frameborder="0"  allowfullscreen></iframe>
+
+					</div>
+
+				{% endif %}
+
+				{% if product.fisico %}
+
+					<div class="col-md-7 col-sm-6 col-xs-12">
+					 
+				{% else  %}
+
+				 <div class="col-sm-6 col-xs-12">
+				
+
+				{% endif %}
+					<!--=====================================
+					REGRESAR A LA TIENDA
+					======================================-->
+
+					<div class="col-xs-6">
+						
+						<h6>
+							
+							<a href="javascript:history.back()" class="text-muted">
+								
+								<i class="fa fa-reply"></i> Regresar a la Galería
+
+							</a>
+
+						</h6>
+
+					</div>
+
+					<!--=====================================
+					COMPARTIR EN REDES SOCIALES
+					======================================-->
+
+					<div class="col-xs-6">
+						
+						<h6>
+							
+							<a class="dropdown-toggle pull-right text-muted" data-toggle="dropdown" href="">
+								
+								<i class="fa fa-plus"></i> Compartir
+
+							</a>
+
+							<ul class="dropdown-menu pull-right compartirRedes">
+
+								<li>
+									<p class="btnFacebook">
+										<i class="fa fa-facebook"></i>
+										Facebook
+									</p>
+								</li>
+
+								<li>
+									<p class="btnGoogle">
+										<i class="fa fa-google"></i>
+										Google
+									</p>
+								</li>
+								
+							</ul>
+
+						</h6>
+
+					</div>
+		
+					<div class="clearfix"></div>
+
+					<!--=====================================
+					ESPACIO PARA EL PRODUCTO
+					======================================-->
+
+					{% if product.oferta  %}
+						{% if product.nuevo %}
+							<h1 class="text-muted text-uppercase">{{product.titulo}}
+
+							<br>
+
+							<small>
+								<span class="label label-warning">Nuevo</span> 
+								<span class="label label-warning">{{product.descuento_oferta}} %</span> 
+
+
+							</small>
+							
+							</h1>
+
+
+						{% else %}
+							<h1 class="text-muted text-uppercase">{{product.titulo}}
+
+								<br>
+
+								<small>
+							
+									<span class="label label-warning">{{product.descuento.oferta}} % </span>
+
+								</small>
+								
+								</h1>
+						{% endif  %}
+
+					{% else %}
+							{% if product.nuevo %}
+
+								<h1 class="text-muted text-uppercase">{{product.titulo}}
+
+								<br>
+
+								<small>
+							
+									<span class="label label-warning">Nuevo</span>
+
+								</small>
+
+								</h1>
+
+
+							{% else %}
+								<h1 class="text-muted text-uppercase"> {{product.titulo}}</h1>
+
+
+							{% endif  %}
+
+					{% endif  %}
+
+
+					<!--=====================================
+					PRECIO
+					======================================-->
+
+						{% if product.oferta  %}
+
+								<h2 class="text-muted">
+										<span>
+												
+													<strong class="oferta">{{product.precio|floatformat}} MXN$</strong>
+
+												</span>
+
+												<span>
+													
+													{{product.precio_oferta|floatformat}} MXN$
+
+										</span>
+
+									</h2>
+
+						{% else %}
+
+							{% if product.fisico %}
+
+								<h2 class="text-muted">MXN$ {{product.precio|floatformat}}</h2>
+
+							{% else %}
+								<h2 class="text-muted">GRATIS</h2>
+							{% endif  %}
+
+						{% endif  %}
+							
+					<!--=====================================
+					DESCRIPCION
+					======================================-->
+
+					<p> {{product.descripcion|safe}}</p>
+
+					<hr>
+
+						
+
+						<!--=====================================
+						ENTREGA Y VISTO POR 
+						======================================-->
+						<div class="form-group row">
+
+							<h4 class="col-md-12 col-sm-0 col-xs-0">
+
+									<hr>
+
+									<span class="label label-default" style="font-weight:100">
+
+									{% if product.entrega %}
+
+										<i class="fa fa-clock-o" style="margin-right:5px"></i>
+										Entrega de {{product.entrega}} días | 
+
+									{% else %}
+										<i class="fa fa-clock-o" style="margin-right:5px"></i>
+										Entrega inmediata | 
+
+									{% endif %}
+
+										
+										<i class="fa fa-eye" style="margin:0px 5px"></i>
+										Visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">{{product.vistas_terramar}} </span> personas
+
+									</span>
+
+								</h4>
+
+
+								<h4 class="col-lg-0 col-md-0 col-xs-12">
+
+									<hr>
+									
+									<small>
+									{% if product.entrega %}
+
+										<i class="fa fa-clock-o" style="margin-right:5px"></i>
+										Entrega de {{product.entrega}} días | 
+									{% else %}
+										<i class="fa fa-clock-o" style="margin-right:5px"></i>
+										Entrega inmediata
+
+									{% endif %}
+										
+										<i class="fa fa-eye" style="margin:0px 5px"></i>
+										Visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">{{product.vistas_terramar}} </span> personas
+
+									</small>
+
+								</h4>
+						</div>
+					<!--=====================================
+					AREA DE LUPA
+					======================================-->
+
+				
+						<figure class="lupa">
+						
+							<img src="">
+
+						</figure>
+
+				</div>
+
+		</div>
+	
+	</div>
+
+</div>	
+
+
+
+			
+{% endblock %}
+
+{% block barrainferior %}
+	{% if product.banner.barrainferior %}
+			{{product.banner.barrainferior}}
+		{% else %}			
+			black
+	{% endif %}    
+{% endblock %}
+
+{% block textoinferior %}
+	{% if product.banner.textoinferior %}
+			{{product.banner.textoinferior}}
+		{% else %}			
+			#333
+	{% endif %}    
+{% endblock %}
+
+
+<!--=====================================
+			SOCIAL FOOTER
+	======================================-->
+{% block facebook2 %}
+	{% if product.banner.style_facebook %}
+			{{product.banner.style_facebook}}
+		{% else %}			
+			facebookColor
+		{% endif %}    
+{% endblock %}
+
+{% block youtube2 %}
+		
+		{% if product.banner.style_youtube %}
+			{{product.banner.style_youtube}}
+		{% else %}			
+			 youtubeColor
+		{% endif %}    
+   
+{% endblock %}
+
+{% block twitter2 %}
+	{% if product.banner.style_twitter %}
+		{{product.banner.style_twitter}}
+	{% else %}			
+		twitterColor
+	{% endif %}      
+{% endblock %}
+
+{% block google2 %}
+
+	{% if product.banner.style_google %}
+		{{product.banner.style_google}}
+	{% else %}			
+		googleColor
+	{% endif %}  
+    
+{% endblock %}
+
+
+{% block instagram2 %}
+	{% if product.banner.style_instagram %}
+		{{product.banner.style_instagram}}
+	{% else %}			
+		instagramColor
+	{% endif %}
+
+{% endblock %}
+
+

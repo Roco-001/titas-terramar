@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta name="title" content="Tienda Virtual">
+
+	<meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam accusantium enim esse eos officiis sit officia">
+
+	<meta name="keyword" content="Lorem ipsum, dolor sit amet, consectetur, adipisicing, elit, Quisquam, accusantium, enim, esse">
+
+	<title>{% block title %}{% endblock %} | Tita´s tienda Online</title>
+    <!--Estilos y fuentes statiscas-->
+	{% load static %}
+	<!--Pluggin  de Boostraps y de FonTAswesome-->
+	<link rel="stylesheet" href="{% static 'core/vistas/css/plugins/bootstrap.min.css' %}">	
+
+	<link rel="stylesheet" href="{% static 'core/vistas/css/plugins/font-awesome.min.css' %}">
+
+	<link rel="stylesheet" href="{% static 'core/vistas/css/plugins/flexslider.css' %}">
+
+	<link rel="stylesheet" href="{% static 'core/vistas/css/plugins/sweetalert.css' %}">
+
+	<link rel="stylesheet" href="{% static 'core/vistas/css/plugins/dscountdown.css' %}">
+
+	<!--Fuentes de Googles-->
+	<!--<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">-->
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+	<!--<link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed" rel="stylesheet">-->
+
+
+
+	<!--Estilos para la plantilla y en general separado para el cabezote, plantilla, -->	
+	<link rel="stylesheet" href="{% static 'core/vistas/css/plantilla.css' %}">
+
+	<link rel="stylesheet" href="{% static 'core/vistas/css/cabezote.css' %}">
+
+	<link rel="stylesheet" href="{% static 'core/vistas/css/slide.css' %}">
+
+	<link rel="stylesheet" href="{% static 'core/vistas/css/productos.css' %}">
+
+	<link rel="stylesheet" href="{% static 'core/vistas/css/infoproducto.css' %}">
+
+	<link rel="stylesheet" href="{% static 'core/vistas/css/footer.css' %}">
+
+	<!--Plugins de JS-->
+
+	<script src="{% static 'core/vistas/js/plugins/jquery.min.js' %}"></script>
+
+	<script src="{% static 'core/vistas/js/plugins/bootstrap.min.js' %}"></script> 
+
+	<script src="{% static 'core/vistas/js/plugins/jquery.easing.js' %}"></script>
+
+	<script src="{% static 'core/vistas/js/plugins/jquery.scrollUp.js' %}"></script>
+
+	<script src="{% static 'core/vistas/js/plugins/jquery.flexslider.js' %}"></script>
+
+	<!--Nuevo-->
+
+	
+
+	
+
+</head>
+
+<body>
+<!--=====================================
+TOP
+======================================-->
+
+<div class="container-fluid barraSuperior" id="top">	
+	<div class="container">
+		
+		<div class="row">
+	
+			<!--=====================================
+			SOCIAL
+			======================================-->
+
+			<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 social">				
+				<ul>
+					{% if LINK_FACEBOOK %}
+					<li>
+						<a href="{{LINK_INSTAGRAM}}" target="_blank">
+							<i class="fa fa-facebook redSocial {% block facebook %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+					{% if LINK_YOUTUBE %}
+					<li>
+						<a href="{{LINK_YOUTUBE}}" target="_blank">
+							<i class="fa fa-youtube redSocial {% block youtube %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+					{% if LINK_TWITTER %}
+					<li>
+						<a href="{{LINK_TWITTER}}" target="_blank">
+							<i class="fa fa-twitter redSocial {% block twitter %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+					{% if LINK_GOOGLE %}
+					<li>
+						<a href="{{LINK_GOOGLE}}" target="_blank">
+							<i class="fa fa-google-plus redSocial {% block google %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+					{% if LINK_INSTAGRAM %}
+					<li>
+						<a href="{{LINK_INSTAGRAM}}" target="_blank">
+							<i class="fa fa-instagram redSocial {% block instagram %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+				</ul>
+
+			</div>
+
+			<!--=====================================
+			REGISTRO
+			======================================-->
+
+			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 registro">
+				
+				<ul>
+					
+					<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>
+					<li>|</li>
+					<li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>
+
+				</ul>
+
+			</div>	
+
+		</div>	
+
+	</div>
+
+</div>
+
+<!--=====================================
+HEADER
+======================================-->
+
+<header class="container-fluid">
+	
+	<div class="container">
+		
+		<div class="row" id="cabezote">
+			<!--=====================================
+			LOGOTIPO
+			======================================-->			
+			<div class="col-lg-3 col-md-3 col-sm-2 col-xs-12" id="logotipo">
+				
+				<a href="{% url 'home'  %}">						
+					<img src="{% block logo %}{% endblock %}" class="img-responsive">
+				</a>				
+			</div>
+
+			<!--=====================================
+			BLOQUE CATEGORÍAS Y BUSCADOR
+			======================================-->
+
+			<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">					
+				<!--=====================================
+				BOTÓN CATEGORÍAS
+				======================================-->
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">					
+					<p>CATEGORÍAS					
+						<span class="pull-right">
+							<i class="fa fa-bars" aria-hidden="true"></i>
+						</span>					
+					</p>
+				</div>
+
+				<!--=====================================
+				BUSCADOR
+				======================================-->
+				
+				<div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-12" id="buscador">
+					
+					<input type="search" name="buscar" class="form-control" placeholder="Buscar...">
+
+					<span class="input-group-btn">						
+						<a href="#">
+							<button class="btn btn-default backColor" type="submit">								
+								<i class="fa fa-search"></i>
+							</button>
+
+						</a>
+					</span>
+				</div>			
+			</div>
+
+			<!--=====================================
+			CARRITO DE COMPRAS
+			======================================-->
+			<div class="col-lg-3 col-md-3 col-sm-2 col-xs-12" id="carrito">				
+				<a href="#">
+					<button class="btn btn-default pull-left backColor"> 						
+						<i class="fa fa-shopping-cart" aria-hidden="true"></i>					
+					</button>				
+				</a>
+				<p>PROXIMAMENTE. <span class="cantidadCesta"></span> <br> .<span class="sumaCesta">.</span></p>
+			</div>
+		</div>
+
+		<!--=====================================
+		CATEGORÍAS
+		======================================-->
+	
+
+		<div class="col-xs-12 backColor" id="categorias">
+		
+			
+		{% for cat in category %}
+
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">				
+				<h4>
+				
+					<a href="#" class="pixelCategorias">{{cat.name|upper}}</a>
+				
+				</h4>				
+				<hr>
+				
+				<ul>	
+					
+					{% for cat in cat.get_subcategorys.all %}	
+					
+					<li><a href="{% url 'subccategory' cat.id  %}" class="pixelSubCategorias">{{cat.name|upper}}</a></li>
+					{% endfor %}
+												
+				</ul>
+				
+			</div>	
+		{% endfor %}
+		</div>
+		
+
+
+	</div>
+	
+</header>
+<!--=====================================
+FIN DE LA CABECERA
+======================================-->
+
+
+{% if request.path == "/" %}  
+<!--=====================================
+CONTENIDO DEL SLIDER
+======================================-->
+
+ 	<div class="container-fluid" id="slide">
+        
+        <div class="row">
+            
+            <!--=====================================
+            DIAPOSITIVAS
+            ======================================-->
+
+            <ul>
+				{% for slider in sliders   %}
+                <!-- SLIDE 1 -->
+
+				
+                <li>
+                    
+                    <img src="{% static 'core/vistas/img/slide/default/back_default.jpg' %}">
+
+                    <div class="slideOpciones {% block styleslider1 %}{% endblock %}">
+                        
+                        <img class="imgProducto" src="{% block imagslider1 %}{% endblock %}" style="top:15%; right:10%; width:15%">
+
+                        <div class="textosSlide" style="top:20%; left:10%; width:40%">
+                            
+                            <h1 style="color:#333"> </h1>
+
+                            <h2 style="color:#777">{% block subtitleslider1 %}{% endblock %}</h2>
+
+                            <h3 style="color:#888">{% block fechaslider1 %}{% endblock %}</h3>
+
+                            <a href="#">
+                                
+                                <button class="btn btn-default backColor text-uppercase">
+
+                                VER PRODUCTO <span class="fa fa-chevron-right"></span>
+
+                                </button>
+
+                            </a>
+
+                        </div>	
+
+                    </div>
+
+                </li>	
+
+                <!-- SLIDE 2 -->
+            
+                <li>
+                    
+                    <img src="{% static 'core/vistas/img/slide/default/back_default.jpg' %}">
+
+                    <div class="slideOpciones {% block styleslider2 %}{% endblock %}">
+                        
+                        <img class="imgProducto" src="{% block imagslider2 %}{% endblock %}" style="top:5%; left:15%; width:25%">
+
+                        <div class="textosSlide" style="top:15%; right:15%; width:40%">
+                            
+                            <h1 style="color:#333">{% block titleslider2 %}{% endblock %}</h1>
+
+                            <h2 style="color:#777">{% block subtitleslider2 %}{% endblock %}</h2>
+
+                            <h3 style="color:#888">{% block fechaslider2 %}{% endblock %}</h3>
+
+                            <a href="#">
+                                
+                                <button class="btn btn-default backColor text-uppercase">
+
+                                VER PRODUCTO <span class="fa fa-chevron-right"></span>
+
+                                </button>
+
+                            </a>
+
+                        </div>	
+
+                    </div>
+
+                </li>	
+
+                <!-- SLIDE 3 -->
+            
+                <li>
+                    
+                    <img src="{% static 'core/vistas/img/slide/slide3/fondo2.jpg' %}">
+
+                    <div class="slideOpciones {% block styleslider3 %}{% endblock %}">
+                        
+                        <img class="imgProducto" src="{% block imagslider3 %}{% endblock %}" style="top:5%; left:15%; width:25%">
+
+                        <div class="textosSlide" style="top:15%; right:15%; width:40%">
+                            
+                            <h1 style="color:#eee">{% block titleslider3 %}{% endblock %}</h1>
+
+                            <h2 style="color:#ccc">{% block subtitleslider3 %}{% endblock %}</h2>
+
+                            <h3 style="color:#aaa">{% block fechaslider3 %}{% endblock %}</h3>
+
+                            <a href="#">
+                                
+                                <button class="btn btn-default backColor text-uppercase">
+
+                                VER PRODUCTO <span class="fa fa-chevron-right"></span>
+
+                                </button>
+
+                            </a>
+
+                        </div>	
+
+                    </div>
+
+                </li>
+
+                <!-- SLIDE 4 -->
+            
+                <li>
+                    
+                    <img src="{% block imagslider4 %}{% endblock %}">
+
+                    <div class="slideOpciones {% block styleslider4 %}{% endblock %}">
+                        
+                        <img class="imgProducto" src="" style="top:5%; right:15%; width:25%">
+
+                        <div class="textosSlide" style="top:20%; left:10%; width:40%">
+                            
+                            <h1 style="color:#333">{% block titleslider4 %}{% endblock %}</h1>
+
+                            <h2 style="color:#777">{% block subtitleslider4 %}{% endblock %}</h2>
+
+                            <h3 style="color:#888">{% block fechaslider4 %}{% endblock %}</h3>
+
+                            <a href="#">
+                                
+                            <!-- 	<button class="btn btn-default backColor text-uppercase">
+
+                                VER PRODUCTO <span class="fa fa-chevron-right"></span>
+
+                                </button> -->
+
+                            </a>
+
+                        </div>	
+
+                    </div>
+
+                </li>		
+
+            </ul>
+
+            <!--=====================================
+            PAGINACIÓN
+            ======================================-->
+
+            <ol id="paginacion">
+
+                <li item="1"><span class="fa fa-circle"></span></li>
+                <li item="2"><span class="fa fa-circle"></span></li>
+                <li item="3"><span class="fa fa-circle"></span></li>
+                <li item="4"><span class="fa fa-circle"></span></li>
+
+            </ol>	
+
+            <!--=====================================
+            FLECHAS
+            ======================================-->	
+
+            <div class="flechas" id="retroceder"><span class="fa fa-chevron-left"></span></div>
+            <div class="flechas" id="avanzar"><span class="fa fa-chevron-right"></span></div>
+
+        </div>
+
+    </div>
+
+    <center>
+        
+        <button id="btnSlide" class="backColor">
+            
+                <i class="fa fa-angle-up"></i>
+
+        </button>
+
+    </center>
+
+
+{% endif %}
+
+
+<!--=====================================
+BANNER
+======================================-->
+<figure class="banner">
+
+	<img src="{% block imgbanner %}{% endblock %}" class="img-responsive" width="100%">	
+
+	<div class="textoBanner {% block styleBanner %}{% endblock %}">
+		
+		<h1 style="color:{% block colorTituloBanner %}{% endblock %}">{% block TituloBanner %}{% endblock %}</h1>
+
+		<h2 style="color:{% block colorOfertaBanner %}{% endblock %}"><strong>{% block OfertaBanner %}{% endblock %}</strong></h2>
+
+		<h3 style="color:{% block colorFechaBanner %}{% endblock %}">{% block fechaBanner %}{% endblock %}</h3>
+
+	</div>
+
+</figure>
+
+<!--=====================================
+BLOQUE DEL CONTENIDO 
+======================================-->
+
+
+{% block content %}{% endblock %}
+
+<!--=====================================
+FOOTER
+======================================-->
+
+<footer class="container-fluid">
+
+	<div class="container">
+
+		<div class="row">
+
+		 	<!--=====================================
+			CATEGORÍAS Y SUBCATEGORÍAS FOOTER
+			======================================-->
+			
+			<div class="col-lg-5 col-md-6 col-xs-12 footerCategorias">
+
+				{% for cat in category %}
+					<div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
+					
+						<h4><a href="" class="pixelCategorias">{{cat.name|upper}}</a></h4>
+												
+					<hr>
+							<ul>
+							{% for cat in cat.get_subcategorys.all %}	
+								<li><a href="" class="pixelSubCategorias">{{cat.name|upper}}</a></li>								
+							{% endfor %}
+							</ul>					
+					</div>
+				{% endfor %}
+			</div>
+				<!--=====================================
+			DATOS CONTACTO
+			======================================-->
+
+				<div class="col-md-3 col-sm-6 col-xs-12 text-left infoContacto">
+					
+					<h5>Dudas e inquietudes, contáctenos en:</h5>
+
+					<br>
+					
+					<h5>
+						
+						<i class="fa fa-phone-square" aria-hidden="true"></i> (+52) 55-3043-9501
+
+						<br><br>
+
+						<i class="fa fa-envelope" aria-hidden="true"></i> titas@tiendavirtual.com
+
+						<br><br>
+
+						<i class="fa fa-map-marker" aria-hidden="true"></i> Calle Dolores #81, Villas del Frenos, Visitación
+
+						<br><br>
+						Edo de Mexico | Mexico
+
+					</h5>
+
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3755.9560800098234!2d-99.15005028561362!3d19.714493936715822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f57a20082ebf%3A0x79aa05aac550b283!2sVillas%20del%20Fresno!5e0!3m2!1ses-419!2smx!4v1598297720495!5m2!1ses-419!2smx" width="100%" height="200%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>	
+
+				</div>
+
+			<!--=====================================
+			FORMULARIO CONTÁCTENOS
+			======================================-->
+
+			<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12 formContacto">
+
+			
+				
+				<h4>RESUELVA SU INQUIETUD</h4>
+
+				<p>{{check}} </p>
+				 <form  action ="" method="POST" >
+					{% csrf_token %} 
+					<table>
+					{{form.as_table}}
+					
+					</table>
+					
+					<br>
+	    	
+	       			<input type="submit" value="Enviar" class="btn btn-default backColor pull-right" id="enviar">
+					
+					</form> 
+
+					
+					 
+				<!-- <form role="form" method="post" onsubmit="return validarContactenos()">
+
+			  		<input type="text" id="nombreContactenos" name="nombreContactenos" class="form-control" placeholder="Escriba su nombre" required> 
+
+			   		<br>
+	    	      
+   					<input type="email" id="emailContactenos" name="emailContactenos" class="	form-control" placeholder="Escriba su correo electrónico" required>  
+
+   					<br>
+	    		     	          
+	       			<textarea id="mensajeContactenos" name="mensajeContactenos" class="form-control" placeholder="Escriba su mensaje" rows="5" required></textarea>
+
+	       			<br>
+	    	
+	       			<input type="submit" value="Enviar" class="btn btn-default backColor pull-right" id="enviar">         
+
+				</form>
+						-->
+
+
+
+				</div>
+			</div>
+
+	
+
+		</div>
+
+	</div>
+</footer>
+
+<!--=====================================
+FINAL
+======================================-->
+
+	<div class="container-fluid final">
+		
+		<div class="container">
+		
+			<div class="row">
+				
+				<div class="col-sm-6 col-xs-12 text-left text-muted">
+					
+					<h5>&copy; 
+					
+					<a href="#" class="link">Aviso Legal</a> 
+					<a href="#" class="link">Cookies</a> 
+					<a href="#" class="link">Política de Privacidad</a>	
+					Sitio elaborado por la Compañía<a href="#" class="link"> RocoWeb</a> </h5>
+
+				</div>
+
+				<div class="col-sm-6 col-xs-12 text-right social">
+					
+				<ul>
+					{% if LINK_FACEBOOK %}
+					<li>
+						<a href="{{LINK_INSTAGRAM}}" target="_blank">
+							<i class="fa fa-facebook redSocial {% block facebook2 %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+					{% if LINK_YOUTUBE %}
+					<li>
+						<a href="{{LINK_YOUTUBE}}" target="_blank">
+							<i class="fa fa-youtube redSocial {% block youtube2 %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+					{% if LINK_TWITTER %}
+					<li>
+						<a href="{{LINK_TWITTER}}" target="_blank">
+							<i class="fa fa-twitter redSocial {% block twitter2 %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+					{% if LINK_GOOGLE %}
+					<li>
+						<a href="{{LINK_GOOGLE}}" target="_blank">
+							<i class="fa fa-google-plus redSocial {% block google2 %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+					{% if LINK_INSTAGRAM %}
+					<li>
+						<a href="{{LINK_INSTAGRAM}}" target="_blank">
+							<i class="fa fa-instagram redSocial {% block instagram2 %}{% endblock %}" aria-hidden="true"></i>
+						</a>
+					</li>
+					{% endif %}
+				</ul>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+<script src="{% static 'core/vistas/js/cabezote.js' %}"></script>
+<script src="{% static 'core/vistas/js/slide.js' %}"></script>
+<script src="{% static 'core/vistas/js/plantilla.js' %}"></script>
+<script src="{% static 'core/vistas/js/buscador.js' %}"></script>
+<script src="{% static 'core/vistas/js/infoproducto.js' %}"></script>
+
+
+
+
+</body>
+</html>

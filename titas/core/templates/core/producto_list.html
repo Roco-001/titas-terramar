@@ -1,0 +1,482 @@
+{% extends "core/base.html" %}
+{% block title %}Portada{% endblock %}
+
+<!--=====================================
+LOGO
+======================================-->
+
+{% block logo %}
+    {% load static %}
+    {% static 'core/vistas/img/plantilla/logo.png' %}
+{% endblock %}
+
+<!--=====================================
+SOCIAL
+======================================-->
+{% block facebook %}
+    facebookColor
+{% endblock %}
+
+{% block youtube %}
+    youtubeColor
+{% endblock %}
+
+{% block twitter %}
+    twitterColor
+{% endblock %}
+
+{% block google %}
+    googleColor
+{% endblock %}
+
+{% block instagram %}
+    instagramColor
+{% endblock %}
+
+    
+<!--=====================================
+Banner
+======================================-->
+
+{% block imgbanner %}
+     {% load static %}
+      {% static 'core/vistas/img/banner/default.jpg' %}
+{% endblock %}
+
+{% block styleBanner %}
+    textoDer
+{% endblock %}
+
+{% block TituloBanner %}
+    TITULO DE PRUEBA
+{% endblock %}
+
+
+{% block OfertaBanner %}
+    50% DE DESCUENTO 
+{% endblock %}
+
+{% block fechaBanner %}
+
+{% endblock %}
+
+{% block colorTituloBanner %}
+	white   
+{% endblock %}
+
+{% block colorOfertaBanner %}
+	white    
+{% endblock %}
+
+{% block colorFechaBanner %}
+	red     
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+        
+
+   
+       
+    <!--=====================================
+    BARRA DE PRODUCTOS MAS VENDIDOS
+    ======================================-->
+
+    <div class="container-fluid well well-sm barraProductos">
+
+        <div class="container">
+            
+            <div class="row">
+
+            
+
+
+                <div class="col-sm-6 col-xs-12">
+                    
+                    <div class="btn-group">
+                        
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="submit">
+
+                        Ordenar Productos <span class="caret"></span></button>
+
+                        <ul class="dropdown-menu" role="menu">
+                                        
+                            <li><a href="{% url 'producto'  %}"  >Más reciente</a></li>
+                            <li><a href="{% url 'producto2'  %}" >Más antiguo</a></li>
+
+                            
+
+                        </ul>
+
+                    </div>
+
+                </div>
+                
+                <div class="col-xs-12 organizarProductos">
+
+                    <div class="btn-group pull-right">
+
+                        <button type="button" class="btn btn-default btnGrid" id="btnGrid0">
+                            
+                            <i class="fa fa-th" aria-hidden="true"></i>  
+
+                            <span class="col-xs-0 pull-right"> GRID</span>
+
+                        </button>
+
+                        <button type="button" class="btn btn-default btnList" id="btnList0">
+                            
+                            <i class="fa fa-list" aria-hidden="true"></i> 
+
+                            <span class="col-xs-0 pull-right"> LIST</span>
+
+                        </button>
+                        
+                    </div>		
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--=====================================
+    TITULO
+    ======================================-->
+    <div class="container-fluid productos">
+
+        <div class="container">
+                    
+                    <div class="row">
+                       
+
+                        <div class="col-xs-12 tituloDestacado">
+                            
+                            <!--===============================================-->
+
+                                <div class="col-sm-6 col-xs-12">
+                                    
+                                    <h1><small>MAS VENDIDOS</small></h1>
+
+                                </div> 
+
+                               
+
+                        </div> 
+                            <div class="clearfix"></div>
+
+                                <hr>
+
+                            </div>
+                    </div>
+                
+ {% if object_list %}          
+                            <ul class="grid0">
+                             {% for producto in object_list %}
+                                <li class="col-md-3 col-sm-6 col-xs-12">
+                                
+                                    <!--===============================================-->
+                        
+                                    <figure>
+                                        
+                                        <a href="#" class="pixelProducto">
+                                            
+                                            <img src="{{producto.portada.url}}" class="img-responsive">
+
+                                        </a>
+
+                                    </figure>
+
+                                    <!--===============================================-->
+
+                                    <h4>
+                                        
+                                        <small>
+                                            
+                                            <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto">
+                                                
+                                               {{producto.titulo}}<br>
+                                            {% if producto.nuevo%}
+                                            <span class="label label-warning fontSize">Nuevo</span> 
+                                            {% endif %}
+                                            {% if producto.oferta %}
+                                            <span class="label label-warning fontSize">{{producto.descuento_oferta}}%</span>
+                                            {% endif %}
+                                            </a>	
+                                            <br>
+                                        </small>			
+
+                                    </h4>
+
+                                    <!--===============================================-->
+                                    
+                                    <div class="col-xs-6 precio">
+                                        
+                                        <h2>
+                                            {% if producto.oferta %}
+                                                <small>
+                                                
+                                                    <strong class="oferta">MXN ${{producto.precio|floatformat}}</strong>
+
+                                                </small>
+                                        
+                                                <small>${{producto.precio_oferta|floatformat}}</small>
+
+                                                {% else %}
+                                                    
+                                                                                        
+                                                        <small>${{producto.precio|floatformat}}</small>
+                                                    
+
+                                            {% endif %}
+                                        </h2>
+
+                                    </div>
+
+                                    <!--===============================================-->
+
+                                        <div class="col-xs-6 enlaces">
+                                            
+                                            <div class="btn-group pull-right">
+                                                
+                                                <button type="button" class="btn btn-default btn-xs deseos" idProducto="470" data-toggle="tooltip" title="Proximamente..">
+                                                    
+                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+
+                                                </button>
+
+                                                <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto">
+                                                
+                                                    <button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+                                                        
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+
+                                                    </button>	
+                                                
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                </li>
+                             {% endfor %}
+                            </ul>
+            
+            
+            <!--=====================================
+            VITRINA DE PRODUCTOS GRATIS  EN LISTA
+            ======================================-->   
+             
+ 
+            
+                    <ul class="list0"  style="display:none">
+                    {% for producto in object_list %}
+                        <li class="col-xs-12">
+                            
+                            <!--===============================================-->
+                            
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                                
+                                <figure>
+                                
+                                    <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto"><img src="{{producto.portada.url}}" class="img-responsive"></a>
+
+                                </figure>
+
+                            </div>
+
+                            <!--===============================================-->
+
+                            <div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+                                
+                                <h1>
+                                    <small>
+                                    
+                                        <a href="#" class="pixelProducto">{{producto.titulo}}</a>
+
+                                        {% if producto.nuevo %}
+                                        <span class="label label-warning">Nuevo</span> 
+                                        {% endif %}
+                                        {% if producto.oferta %}
+                                        <span class="label label-warning">{{producto.descuento_oferta}}% </span>
+                                        {% endif %}
+                                    </small>
+
+                                </h1>
+
+                                <p class="text-muted">{{producto.titular|safe}}</p>
+
+                                <h2>
+                                    {% if producto.oferta %}
+                                        <small>
+                                        
+                                            <strong class="oferta">MXN ${{producto.precio|floatformat}}</strong>
+
+                                        </small>
+                                   
+                                        <small>${{producto.precio_oferta|floatformat}}</small>
+
+                                        {% else %}                                           
+                                                                                
+                                                <small>${{producto.precio|floatformat}}</small>
+                                            
+                                            
+
+                                    {% endif %}
+                                </h2>
+                                <div class="btn-group pull-left enlaces">
+                                        
+                                    <button type="button" class="btn btn-default btn-xs deseos"  idProducto="470" data-toggle="tooltip" title="Proximamente..">
+
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+
+                                    </button>
+
+                                    <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto">
+
+                                        <button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+
+                                        </button>
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            <!--===============================================-->
+
+                            <div class="col-xs-12">
+
+                                <hr>
+
+                            </div>
+
+                            <!--===============================================-->
+
+                        </li>     
+                    {% endfor %}
+                    </ul>
+
+        </div>
+    </div> 
+                <!-- Menú de paginación -->
+                {% if is_paginated %}
+                     <center>
+                    <nav aria-label="Page navigation" >
+                    <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item ">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">&laquo;</a>
+                    </li>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                    <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+                    <a class="page-link" href="?page={{ i }}" style =" background :{% if page_obj.number == i %} #47bac1 {% endif %}">{{ i }}</a>
+                    </li>
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item ">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">&raquo;</a>
+                    </li>
+                    {% endif %}
+                    </ul>
+                    </nav>
+                     </center>
+                {% endif %}         
+
+                
+            
+       
+    
+
+
+{% else %}
+                <div class="container">
+	
+                    <div class="row">
+                        
+                        <div class="col-12-xs text-center error404">                      
+                            
+                            
+                            <h2>Oops! No hay Productos en esta Subcategoria</h2>
+
+                        </div>
+
+
+                    </div>
+
+
+                 </div>
+
+    {% endif  %} 
+   
+ 
+
+{% endblock %}
+
+
+<!--=====================================
+			SOCIAL FOOTER
+	======================================-->
+{% block facebook2 %}
+	{% if product.banner.style_facebook %}
+			{{product.banner.style_facebook}}
+		{% else %}			
+			facebookColor
+		{% endif %}    
+{% endblock %}
+
+{% block youtube2 %}
+		
+		{% if product.banner.style_youtube %}
+			{{product.banner.style_youtube}}
+		{% else %}			
+			 youtubeColor
+		{% endif %}    
+   
+{% endblock %}
+
+{% block twitter2 %}
+	{% if product.banner.style_twitter %}
+		{{product.banner.style_twitter}}
+	{% else %}			
+		twitterColor
+	{% endif %}      
+{% endblock %}
+
+{% block google2 %}
+
+	{% if product.banner.style_google %}
+		{{product.banner.style_google}}
+	{% else %}			
+		googleColor
+	{% endif %}  
+    
+{% endblock %}
+
+
+{% block instagram2 %}
+	{% if product.banner.style_instagram %}
+		{{product.banner.style_instagram}}
+	{% else %}			
+		instagramColor
+	{% endif %}
+
+{% endblock %}

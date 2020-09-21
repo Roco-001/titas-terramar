@@ -1,0 +1,578 @@
+{% extends "core/base.html" %}
+{% block title %}Portada{% endblock %}
+
+
+
+
+{% block barrasuperior %}
+{% if subcategory.banner.barrasuperior %}
+			{{subcategory.banner.barrasuperior}}
+	{% else %}			
+			black
+	{% endif %}    
+{% endblock %}
+
+
+
+<!--=====================================
+LOGO
+======================================-->
+
+{% block logo %}
+
+	{% if subcategory.banner.imagen_logo_banner %}
+			{{subcategory.banner.imagen_logo_banner.url}}
+
+	{% else %}
+		{% load static %}
+		{% static 'core/vistas/img/plantilla/logo.png' %}
+
+	{% endif %}   
+{% endblock %}
+
+<!--=====================================
+			SOCIAL
+	======================================-->
+{% block facebook %}
+	{% if subcategory.banner.style_facebook %}
+			{{subcategory.banner.style_facebook}}
+		{% else %}			
+			facebookColor
+		{% endif %}    
+{% endblock %}
+
+{% block youtube %}
+		
+		{% if subcategory.banner.style_youtube %}
+			{{subcategory.banner.style_youtube}}
+		{% else %}			
+			 youtubeColor
+		{% endif %}    
+   
+{% endblock %}
+
+{% block twitter %}
+	{% if subcategory.banner.style_twitter %}
+		{{subcategory.banner.style_twitter}}
+	{% else %}			
+		twitterColor
+	{% endif %}      
+{% endblock %}
+
+{% block google %}
+
+	{% if subcategory.banner.style_google %}
+		{{subcategory.banner.style_google}}
+	{% else %}			
+		googleColor
+	{% endif %}  
+    
+{% endblock %}
+
+
+{% block instagram %}
+	{% if subcategory.banner.style_instagram %}
+		{{subcategory.banner.style_instagram}}
+	{% else %}			
+		instagramColor
+	{% endif %}
+
+{% endblock %}
+    
+<!--=====================================
+Banner
+======================================-->
+
+
+	{% block imgbanner %}
+		{% if subcategory.banner.imagen_banner %}
+			{{subcategory.banner.imagen_banner.url}}
+
+		{% else %}
+
+			{% load static %}
+			{% static 'core/vistas/img/banner/default.jpg' %} 
+		{% endif %}
+
+	{% endblock %}
+
+
+{% block styleBanner %}
+	{% if subcategory.banner.style_tex_banner %}
+			{{subcategory.banner.style_tex_banner}}
+
+	{% else %}
+			textoDer
+	{% endif %}
+
+    
+{% endblock %}
+
+{% block TituloBanner %}
+	{% if subcategory.banner.titulo1_banner %}
+		{{subcategory.banner.titulo1_banner}}
+	{% else %}
+		
+	{% endif %}
+
+{% endblock %}
+
+
+{% block OfertaBanner %}
+    {% if subcategory.banner.titulo2_banner %}
+		{{subcategory.banner.titulo2_banner}}
+	{% else %}
+		
+	{% endif %}
+{% endblock %}
+
+{% block fechaBanner %}
+	{% if subcategory.banner.titulo3_banner %}
+		{{subcategory.banner.titulo3_banner}}
+	{% else %}
+	
+	{% endif %}
+
+    
+{% endblock %}
+
+{% block colorTituloBanner %}
+{% if subcategory.banner.color_titulo1_banner %}
+		{{subcategory.banner.color_titulo1_banner}}
+	{% else %}
+	black
+    {% endif %}
+    
+{% endblock %}
+
+{% block colorOfertaBanner %}
+	{% if subcategory.banner.color_titulo2_banner %}
+		{{subcategory.banner.color_titulo2_banner}}
+	{% else %}
+	red
+    {% endif %}
+    
+{% endblock %}
+
+{% block colorFechaBanner %}
+	{% if subcategory.banner.color_titulo3_banner %}
+		{{subcategory.banner.color_titulo3_banner}}
+	{% else %}
+	black
+    {% endif %}
+    
+{% endblock %}
+
+
+{% block content %}
+
+        
+
+   
+       
+    <!--=====================================
+    BARRA DE PRODUCTOS MAS VENDIDOS
+    ======================================-->
+
+    <div class="container-fluid well well-sm barraProductos">
+
+        <div class="container">
+            
+            <div class="row">
+
+                
+                
+                <div class="col-xs-12 organizarProductos">
+
+                    <div class="btn-group pull-right">
+
+                        <button type="button" class="btn btn-default btnGrid" id="btnGrid0">
+                            
+                            <i class="fa fa-th" aria-hidden="true"></i>  
+
+                            <span class="col-xs-0 pull-right"> GRID</span>
+
+                        </button>
+
+                        <button type="button" class="btn btn-default btnList" id="btnList0">
+                            
+                            <i class="fa fa-list" aria-hidden="true"></i> 
+
+                            <span class="col-xs-0 pull-right"> LIST</span>
+
+                        </button>
+                        
+                    </div>		
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--=====================================
+    TITULO
+    ======================================-->
+    <div class="container-fluid productos">
+
+        <div class="container">
+                    
+                        <div class="row">
+
+                                    <div class="col-xs-12 tituloDestacado">
+                                        
+                                        <!--===============================================-->
+
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        
+                                                        <h1><small>{{subcategory}} </small></h1>
+
+                                                    </div> 
+
+                                            
+
+                                    </div> 
+                        
+                        
+                            <div class="clearfix"></div>
+
+                                 <hr>
+
+                            </div>
+
+
+                        </div>
+
+
+                        {% if product %}
+                            
+                            <ul class="grid0">
+                             {% for producto in product %}
+                            
+                                <li class="col-md-3 col-sm-6 col-xs-12">
+                                
+                                    <!--===============================================-->
+                        
+                                    <figure>
+                                        
+                                        <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto">
+                                            
+                                            <img src="{{producto.portada.url}}" class="img-responsive">
+
+                                        </a>
+
+                                    </figure>
+
+                                    <!--===============================================-->
+
+                                    <h4>
+                                        
+                                        <small>
+                                            
+                                            <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto">
+                                                
+                                               {{producto.titulo}}<br>
+                                            {% if producto.nuevo%}
+                                            <span class="label label-warning fontSize">Nuevo</span> 
+                                            {% endif %}
+                                            {% if producto.oferta %}
+                                            <span class="label label-warning fontSize">{{producto.descuento_oferta}}%</span>
+                                            {% endif %}
+                                            </a>	
+                                            <br>
+                                        </small>			
+
+                                    </h4>
+
+                                    <!--===============================================-->
+                                    
+                                    <div class="col-xs-6 precio">
+                                        
+                                        <h2>
+                                            {% if producto.oferta %}
+                                                <small>
+                                                
+                                                    <strong class="oferta">MXN ${{producto.precio|floatformat}}</strong>
+
+                                                </small>
+                                        
+                                                <small>${{producto.precio_oferta|floatformat}}</small>
+
+                                                {% else %}
+
+                                                 {% if producto.fisico %}
+                                                                               
+                                                        <small>${{producto.precio|floatformat}}</small>
+                                       
+                                                {% else %}
+                                                        <small>GRATIS</small>
+                                                {% endif %}                                                                                     
+                                              
+                                                
+                                            {% endif %}
+                                        </h2>
+
+                                    </div>
+
+                                    <!--===============================================-->
+
+                                        <div class="col-xs-6 enlaces">
+                                            
+                                            <div class="btn-group pull-right">
+                                                
+                                                <button type="button" class="btn btn-default btn-xs deseos" idProducto="470" data-toggle="tooltip" title="Proximamente..">
+                                                    
+                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+
+                                                </button>
+
+                                                <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto">
+                                                
+                                                    <button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+                                                        
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+
+                                                    </button>	
+                                                
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                </li>
+                             {% endfor %}
+                            </ul>
+
+            
+            <!--=====================================
+            VITRINA DE PRODUCTOS GRATIS  EN LISTA
+            ======================================-->   
+               
+
+         
+                    <ul class="list0"  style="display:none">
+                    {% for producto in product %}
+                        <li class="col-xs-12">
+                            
+                            <!--===============================================-->
+                            
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                                
+                                <figure>
+                                
+                                    <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto"><img src="{{producto.portada.url}}" class="img-responsive"></a>
+
+                                </figure>
+
+                            </div>
+
+                            <!--===============================================-->
+
+                            <div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+                                
+                                <h1>
+                                    <small>
+                                    
+                                        <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto">{{producto.titulo}}</a>
+
+                                        {% if producto.nuevo %}
+                                        <span class="label label-warning">Nuevo</span> 
+                                        {% endif %}
+                                        {% if producto.oferta %}
+                                        <span class="label label-warning">{{producto.descuento_oferta}}% </span>
+                                        {% endif %}
+                                    </small>
+
+                                </h1>
+
+                                <p class="text-muted">{{producto.titular|safe}}</p>
+
+                                <h2>
+                                    {% if producto.oferta %}
+                                        <small>
+                                        
+                                            <strong class="oferta">MXN ${{producto.precio|floatformat}}</strong>
+
+                                        </small>
+                                   
+                                        <small>${{producto.precio_oferta|floatformat}}</small>
+
+                                        {% else %}
+
+                                            {% if producto.fisico %}
+                                                                               
+                                                <small>${{producto.precio|floatformat}}</small>
+                                       
+                                            {% else %}
+                                                    <small>GRATIS</small>
+                                            {% endif %}
+
+                                    {% endif %}
+                                </h2>
+                                <div class="btn-group pull-left enlaces">
+                                        
+                                    <button type="button" class="btn btn-default btn-xs deseos"  idProducto="470" data-toggle="tooltip" title="Proximamente..">
+
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+
+                                    </button>
+
+                                    <a href="{% url 'infoproduct' producto.id %}" class="pixelProducto">
+
+                                        <button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+
+                                        </button>
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            <!--===============================================-->
+
+                            <div class="col-xs-12">
+
+                                <hr>
+
+                            </div>
+
+                            <!--===============================================-->
+
+                        </li>     
+                    {% endfor %}
+                    </ul>
+                     {{page}} 
+        
+            
+       
+        </div>
+    </div> 
+    
+     <!-- Menú de paginación -->
+            {% if paginator %}
+            <center>
+                <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                {% if product.has_previous %}
+                <li class="page-item ">
+                <a  class="page-link" href="?page={{ product.previous_page_number }}">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled ">
+                <a  class="page-link" href="#" tabindex="-1">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                <li  class="page-item {% if product.number == i %}active{% endif %}">
+                <a  class="page-link" href="?page={{ i }}" style =" background :{% if product.number == i %} #47bac1 {% endif %}">{{ i }}</a>
+                </li>
+                {% endfor %}
+                {% if product.has_next %}
+                <li class="page-item ">
+                <a  class="page-link" href="?page={{ product.next_page_number }}">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">&raquo;</a>
+                </li>
+                {% endif %}
+                </ul>
+                </nav>
+            </center>    
+        {% endif %}               
+                 
+
+ {% else %}
+                <div class="container">
+	
+                    <div class="row">
+                        
+                        <div class="col-12-xs text-center error404">                      
+                            
+                            
+                            <h2>Oops! No hay Productos en esta Subcategoria</h2>
+
+                        </div>
+
+
+                    </div>
+
+
+                 </div>
+
+    {% endif  %} 
+            
+
+{% endblock %}
+
+
+<!--=====================================
+			SOCIAL FOOTER
+	======================================-->
+{% block facebook2 %}
+	{% if subcategory.banner.style_facebook %}
+			{{subcategory.banner.style_facebook}}
+		{% else %}			
+			facebookColor
+		{% endif %}    
+{% endblock %}
+
+{% block youtube2 %}
+		
+		{% if subcategory.banner.style_youtube %}
+			{{subcategory.banner.style_youtube}}
+		{% else %}			
+			 youtubeColor
+		{% endif %}    
+   
+{% endblock %}
+
+{% block twitter2 %}
+	{% if subcategory.banner.style_twitter %}
+		{{subcategory.banner.style_twitter}}
+	{% else %}			
+		twitterColor
+	{% endif %}      
+{% endblock %}
+
+{% block google2 %}
+
+	{% if subcategory.banner.style_google %}
+		{{subcategory.banner.style_google}}
+	{% else %}			
+		googleColor
+	{% endif %}  
+    
+{% endblock %}
+
+
+{% block instagram2 %}
+	{% if subcategory.banner.style_instagram %}
+		{{subcategory.banner.style_instagram}}
+	{% else %}			
+		instagramColor
+	{% endif %}
+
+{% endblock %}
+
+
+{% block barrainferior %}
+	{% if subcategory.banner.barrainferior %}
+			{{subcategory.banner.barrainferior}}
+		{% else %}			
+			black
+		{% endif %}    
+{% endblock %}
+
+{% block textoinferior %}
+	{% if subcategory.banner.textoinferior %}
+			{{subcategory.banner.textoinferior}}
+		{% else %}			
+			#333
+		{% endif %}    
+{% endblock %}
